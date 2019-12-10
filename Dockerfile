@@ -1,10 +1,6 @@
 FROM killbill/killbill:0.20.11
 MAINTAINER Gareth Bradley <gb@garethbradley.co.uk>
 
-ENV CODE_HOME $PWD
-RUN ls -l $CODE_HOME
-RUN ls -l $CODE_HOME/webapps
-
 # Install envsubst (see killbill.sh)
 USER root
 ENV DEBIAN_FRONTEND noninteractive
@@ -43,11 +39,8 @@ RUN cd $TOMCAT_HOME/webapps && \
 #    rm -f animal-sniffer-annotations-1.14.jar annotations-3.0.1u2.jar asm-5.0.3.jar commons-codec-1.9.jar commons-lang3-3.2.1.jar error_prone_annotations-2.1.3.jar google-api-services-sqladmin-v1beta4-rev20190510-1.28.0.jar j2objc-annotations-1.1.jar jackson-core-2.9.6.jar && \
 #    cd -
 
-
 # Add Kaui
-COPY $CODE_HOME/webapps/kaui.war $TOMCAT_HOME/webapps/kaui.war
-RUN pwd
-RUN ls -l $TOMCAT_HOME/webapps/
+COPY webapps/kaui.war $TOMCAT_HOME/webapps/kaui.war
 
 # Pre-expand the Kaui WAR
 RUN cd $TOMCAT_HOME/webapps && \
@@ -80,4 +73,4 @@ COPY shiro.ini $KILLBILL_INSTALL_DIR
 
 ENV KILLBILL_SECURITY_SHIRO_RESOURCE_PATH $KILLBILL_INSTALL_DIR/shiro.ini
 
-RUN sudo chmod +x /var/lib/killbill/killbill.sh
+RUN sudo chmod +x /var/lib/killbill/killbill.sh 
