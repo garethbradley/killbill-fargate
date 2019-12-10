@@ -10,6 +10,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
+      with:
+        # Whether to download Git-LFS files
+        lfs: true
     - run: pwd
     - run: ls -l
     - run: ls -l webapps/
