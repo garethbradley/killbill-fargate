@@ -2,6 +2,8 @@ FROM killbill/killbill:0.20.11
 MAINTAINER Gareth Bradley <gb@garethbradley.co.uk>
 
 ENV CODE_HOME $PWD
+RUN ls -l $CODE_HOME
+RUN ls -l $CODE_HOME/webapps
 
 # Install envsubst (see killbill.sh)
 USER root
