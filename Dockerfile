@@ -1,6 +1,8 @@
 FROM killbill/killbill:0.20.11
 MAINTAINER Gareth Bradley <gb@garethbradley.co.uk>
 
+ENV CODE_HOME $PWD
+
 # Install envsubst (see killbill.sh)
 USER root
 ENV DEBIAN_FRONTEND noninteractive
@@ -72,15 +74,15 @@ RUN touch -r ../kaui.war META-INF/war-tracker && \
 #    cd -
 
 # Note that classic configuration via environment variables won't work since Ansible isn't invoked
-COPY webapp-context.xml $TOMCAT_HOME/webapps/ROOT/META-INF/context.xml
-COPY webapp-context.xml $TOMCAT_HOME/webapps/kaui/META-INF/context.xml
-COPY context.xml $TOMCAT_HOME/conf/context.xml
-COPY server.xml $TOMCAT_HOME/conf/server.xml
-COPY setenv.sh $TOMCAT_HOME/bin/setenv.sh
-COPY logback.xml $KILLBILL_INSTALL_DIR/logback.xml
-COPY killbill.properties.template $KILLBILL_INSTALL_DIR/killbill.properties.template
-COPY killbill.sh $KILLBILL_INSTALL_DIR
-COPY shiro.ini $KILLBILL_INSTALL_DIR
+COPY $CODE_HOME/webapp-context.xml $TOMCAT_HOME/webapps/ROOT/META-INF/context.xml
+COPY $CODE_HOME/webapp-context.xml $TOMCAT_HOME/webapps/kaui/META-INF/context.xml
+COPY $CODE_HOME/context.xml $TOMCAT_HOME/conf/context.xml
+COPY $CODE_HOME/server.xml $TOMCAT_HOME/conf/server.xml
+COPY $CODE_HOME/setenv.sh $TOMCAT_HOME/bin/setenv.sh
+COPY $CODE_HOME/logback.xml $KILLBILL_INSTALL_DIR/logback.xml
+COPY $CODE_HOME/killbill.properties.template $KILLBILL_INSTALL_DIR/killbill.properties.template
+COPY $CODE_HOME/killbill.sh $KILLBILL_INSTALL_DIR
+COPY $CODE_HOME/shiro.ini $KILLBILL_INSTALL_DIR
 
 ENV KILLBILL_SECURITY_SHIRO_RESOURCE_PATH $KILLBILL_INSTALL_DIR/shiro.ini
 
