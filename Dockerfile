@@ -43,7 +43,7 @@ RUN cd $TOMCAT_HOME/webapps && \
 
 
 # Add Kaui
-COPY webapps/kaui.war $TOMCAT_HOME/webapps/kaui.war
+COPY $CODE_HOME/webapps/kaui.war $TOMCAT_HOME/webapps/kaui.war
 RUN pwd
 RUN ls -l $TOMCAT_HOME/webapps/
 
