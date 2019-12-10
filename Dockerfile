@@ -43,9 +43,7 @@ RUN cd $TOMCAT_HOME/webapps && \
 
 
 # Add Kaui
-COPY $CODE_HOME/webapps/kaui.war $TOMCAT_HOME/webapps/kaui.war
-RUN pwd
-RUN ls -l
+COPY webapps/kaui.war $TOMCAT_HOME/webapps/kaui.war
 
 # Pre-expand the Kaui WAR
 # RUN cd $TOMCAT_HOME/webapps && \
@@ -58,6 +56,7 @@ RUN ls -l
 #     cd -
 RUN cd $TOMCAT_HOME/webapps
 RUN mkdir kaui
+RUN ls -l
 RUN cd kaui
 RUN jar -xvf ../kaui.war
 RUN touch -r ../kaui.war META-INF/war-tracker && \
@@ -74,15 +73,15 @@ RUN touch -r ../kaui.war META-INF/war-tracker && \
 #    cd -
 
 # Note that classic configuration via environment variables won't work since Ansible isn't invoked
-COPY $CODE_HOME/webapp-context.xml $TOMCAT_HOME/webapps/ROOT/META-INF/context.xml
-COPY $CODE_HOME/webapp-context.xml $TOMCAT_HOME/webapps/kaui/META-INF/context.xml
-COPY $CODE_HOME/context.xml $TOMCAT_HOME/conf/context.xml
-COPY $CODE_HOME/server.xml $TOMCAT_HOME/conf/server.xml
-COPY $CODE_HOME/setenv.sh $TOMCAT_HOME/bin/setenv.sh
-COPY $CODE_HOME/logback.xml $KILLBILL_INSTALL_DIR/logback.xml
-COPY $CODE_HOME/killbill.properties.template $KILLBILL_INSTALL_DIR/killbill.properties.template
-COPY $CODE_HOME/killbill.sh $KILLBILL_INSTALL_DIR
-COPY $CODE_HOME/shiro.ini $KILLBILL_INSTALL_DIR
+COPY webapp-context.xml $TOMCAT_HOME/webapps/ROOT/META-INF/context.xml
+COPY webapp-context.xml $TOMCAT_HOME/webapps/kaui/META-INF/context.xml
+COPY context.xml $TOMCAT_HOME/conf/context.xml
+COPY server.xml $TOMCAT_HOME/conf/server.xml
+COPY setenv.sh $TOMCAT_HOME/bin/setenv.sh
+COPY logback.xml $KILLBILL_INSTALL_DIR/logback.xml
+COPY killbill.properties.template $KILLBILL_INSTALL_DIR/killbill.properties.template
+COPY killbill.sh $KILLBILL_INSTALL_DIR
+COPY shiro.ini $KILLBILL_INSTALL_DIR
 
 ENV KILLBILL_SECURITY_SHIRO_RESOURCE_PATH $KILLBILL_INSTALL_DIR/shiro.ini
 
