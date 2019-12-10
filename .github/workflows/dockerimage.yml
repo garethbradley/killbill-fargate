@@ -17,13 +17,13 @@ jobs:
     - run: ls -l
     - run: ls -l webapps/
     - run: env
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag garethbradley/killbill-fargate:$(date +%s)
+    # - name: Build the Docker image
+    #   run: docker build . --file Dockerfile --tag garethbradley/killbill-fargate:$(date +%s)
     - name: Publish Docker
       uses: elgohr/Publish-Docker-Github-Action@2.9
       with:
         # The name of the image you would like to push
-        name: garethbradley/killbill-fargate:$(date +%s)
+        name: garethbradley/killbill-fargate
         # The login username for the registry
         username: ${{ secrets.DockerHubUsername }}
         # The login password for the registry
