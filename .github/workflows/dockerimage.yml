@@ -12,6 +12,7 @@ jobs:
     - uses: actions/checkout@v1
     - run: ls -l
     - run: pwd
+    - run: env
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag garethbradley/killbill-fargate:$(date +%s)
     - name: Publish Docker

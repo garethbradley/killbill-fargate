@@ -18,6 +18,9 @@ ENV KPM_INSTALL_CMD /bin/true
 RUN kpm uninstall kpm --destination=$KILLBILL_INSTALL_DIR/bundles
 RUN rm -f $KILLBILL_INSTALL_DIR/bundles/platform/*
 
+# Add Kaui
+COPY $CODE_HOME/webapps/kaui.war $TOMCAT_HOME/webapps/kaui.war
+
 # Pre-expand the Kill Bill WAR
 RUN cd $TOMCAT_HOME/webapps && \
     mkdir ROOT && \
@@ -38,9 +41,6 @@ RUN cd $TOMCAT_HOME/webapps && \
 #RUN cd $TOMCAT_HOME/webapps/ROOT/WEB-INF/lib/ && \
 #    rm -f animal-sniffer-annotations-1.14.jar annotations-3.0.1u2.jar asm-5.0.3.jar commons-codec-1.9.jar commons-lang3-3.2.1.jar error_prone_annotations-2.1.3.jar google-api-services-sqladmin-v1beta4-rev20190510-1.28.0.jar j2objc-annotations-1.1.jar jackson-core-2.9.6.jar && \
 #    cd -
-
-# Add Kaui
-COPY webapps/kaui.war $TOMCAT_HOME/webapps/kaui.war
 
 # Pre-expand the Kaui WAR
 RUN cd $TOMCAT_HOME/webapps && \
