@@ -48,12 +48,12 @@ RUN ls -l $TOMCAT_HOME/webapps/
 
 # Pre-expand the Kaui WAR
 RUN cd $TOMCAT_HOME/webapps && \
-    mkdir kaui && \
-    cd kaui && \
-    jar -xvf ../kaui.war && \
-    touch -r ../kaui.war META-INF/war-tracker && \
+    mkdir $TOMCAT_HOME/webapps/kaui && \
+    cd $TOMCAT_HOME/webapps/kaui && \
+    jar -xvf $TOMCAT_HOME/webapps/kaui.war && \
+    touch -r $TOMCAT_HOME/webapps/kaui.war $TOMCAT_HOME/webapps/kaui/META-INF/war-tracker && \
     cd - && \
-    rm -f kaui.war && \
+    rm -f $TOMCAT_HOME/webapps/kaui.war && \
     cd -
 
 # TODO See above
