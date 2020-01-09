@@ -15,8 +15,8 @@ USER tomcat
 ENV KPM_INSTALL_CMD /bin/true
 
 # No JRuby plugin and no OSGI bundle, to keep memory usage low
-RUN kpm uninstall kpm --destination=$KILLBILL_INSTALL_DIR/bundles
-RUN rm -f $KILLBILL_INSTALL_DIR/bundles/platform/*
+# RUN kpm uninstall kpm --destination=$KILLBILL_INSTALL_DIR/bundles
+# RUN rm -f $KILLBILL_INSTALL_DIR/bundles/platform/*
 
 # Pre-expand the Kill Bill WAR
 RUN cd $TOMCAT_HOME/webapps && \
