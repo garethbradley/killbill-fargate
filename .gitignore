@@ -7,3 +7,4 @@
 # Ignore bundler config.
 Makefile
 old/
+.env-local

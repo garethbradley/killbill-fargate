@@ -8,7 +8,7 @@
   <Listener className="org.apache.catalina.mbeans.GlobalResourcesLifecycleListener" />
   <Listener className="org.apache.catalina.core.ThreadLocalLeakPreventionListener" />
 
-  <Service name="Catalina">
+  <Service name="killbill">
     <Executor name="tomcatThreadPool"
               namePrefix="catalina-exec-"
               maxThreads="20"
@@ -26,6 +26,34 @@
     <Engine name="Catalina" defaultHost="localhost">
       <Host name="localhost"
             appBase="webapps"
+            unpackWARs="true"
+            autoDeploy="false">
+
+        <Valve className="org.apache.catalina.valves.RemoteIpValve"
+               protocolHeader="x-forwarded-proto"
+               portHeader="x-forwarded-port" />
+      </Host>
+    </Engine>
+  </Service>
+
+  <Service name="kaui">
+    <Executor name="tomcatThreadPool"
+              namePrefix="catalina-exec-"
+              maxThreads="20"
+              maxIdleTime="30000"
+              minSpareThreads="4"
+              prestartminSpareThreads="true" />
+
+    <Connector executor="tomcatThreadPool"
+               port="8081"
+               address="0.0.0.0"
+               protocol="HTTP/1.1"
+               useIPVHosts="true"
+               connectionTimeout="20000" />
+
+    <Engine name="Catalina" defaultHost="localhost">
+      <Host name="localhost"
+            appBase="webapps/kaui"
             unpackWARs="true"
             autoDeploy="false">
 
