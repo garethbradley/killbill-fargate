@@ -25,7 +25,7 @@
 
     <Engine name="Catalina" defaultHost="localhost">
       <Host name="localhost"
-            appBase="webapps"
+            appBase="webapps/ROOT"
             unpackWARs="true"
             autoDeploy="false">
 
