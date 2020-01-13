@@ -24,7 +24,7 @@ CATALINA_OPTS="-server
 
 # Java Properties
 export CATALINA_OPTS="$CATALINA_OPTS
-                      -Dkaui.url=http://127.0.0.1:8080
+                      -Dkaui.url=http://127.0.0.1:8080/kaui
                       -Dkaui.db.url=$KAUI_CONFIG_DAO_URL
                       -Dkaui.db.password=$KAUI_CONFIG_DAO_PASSWORD
                       -Dkaui.db.username=$KAUI_CONFIG_DAO_USER
