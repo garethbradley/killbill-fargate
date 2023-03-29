@@ -20,7 +20,7 @@ jobs:
     # - name: Build the Docker image
     #   run: docker build . --file Dockerfile --tag garethbradley/killbill-fargate:$(date +%s)
     - name: Publish Docker
-      uses: elgohr/Publish-Docker-Github-Action@2.9
+      uses: elgohr/Publish-Docker-Github-Action@v5
       with:
         # The name of the image you would like to push
         name: garethbradley/killbill-fargate
